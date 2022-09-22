@@ -6,13 +6,14 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:47:08 by jchene            #+#    #+#             */
-/*   Updated: 2022/09/21 18:10:48 by jchene           ###   ########.fr       */
+/*   Updated: 2022/09/22 13:27:18 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
 #include <string>
+#include <cstdlib>
 #include "Contact.hpp"
 
 class PhoneBook
@@ -25,14 +26,11 @@ public:
 	PhoneBook();
 	void newContact(std::string, std::string, std::string, std::string, std::string);
 	void displayContact(int id);
-	void displayAll();
+	void displayPreview();
+	int getNbContacts();
 };
 
-std::string trunc(std::string str){
-	if (str.length() > 10)
-		return (str.substr(0, 9) + ".");
-	return (str.substr(0, 10));
-}
+std::string trunc(std::string str);
 
 
 
