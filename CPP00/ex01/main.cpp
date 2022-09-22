@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:48:42 by jchene            #+#    #+#             */
-/*   Updated: 2022/09/22 16:09:37 by jchene           ###   ########.fr       */
+/*   Updated: 2022/09/22 16:58:19 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int main(void)
 {
 	PhoneBook phoneBook;
 	std::string str;
-	std::string firstName = "";
-	std::string lastName = "";
-	std::string nickname = "";
-	std::string phoneNumber = "";
-	std::string darkestSecret = "";
+	std::string firstName;
+	std::string lastName;
+	std::string nickname;
+	std::string phoneNumber;
+	std::string darkestSecret;
 	int i;
 
 	std::cout << "\033c";
@@ -30,6 +30,11 @@ int main(void)
 		std::cin >> str;
 		if (str == "ADD")
 		{
+			firstName = "";
+			lastName = "";
+			nickname = "";
+			phoneNumber = "";
+			darkestSecret = "";
 			while (firstName.empty() || lastName.empty() || nickname.empty() || phoneNumber.empty() || darkestSecret.empty())
 			{
 				std::cout << "\033c" << "Creating contact" << std::endl << std::endl;

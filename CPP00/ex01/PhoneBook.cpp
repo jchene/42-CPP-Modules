@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:46:56 by jchene            #+#    #+#             */
-/*   Updated: 2022/09/22 14:50:09 by jchene           ###   ########.fr       */
+/*   Updated: 2022/09/22 17:09:03 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,21 @@ PhoneBook::PhoneBook()
 {
 	std::cout << "TEST" << std::endl;
 	this->_nbContacts = 0;
+	this->_nextToAdd = 0;
 }
 
 void PhoneBook::newContact(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darkestSecret)
 {
-	this->_array[this->_nbContacts].setId(this->_nbContacts);
-	this->_array[this->_nbContacts].setFirstName(firstName);
-	this->_array[this->_nbContacts].setLastName(lastName);
-	this->_array[this->_nbContacts].setNickname(nickname);
-	this->_array[this->_nbContacts].setPhoneNumber(phoneNumber);
-	this->_array[this->_nbContacts].setDarkestSecret(darkestSecret);
-	this->_nbContacts++;
-	this->_nbContacts %= 8;
+	this->_array[this->_nextToAdd].setId(this->_nextToAdd);
+	this->_array[this->_nextToAdd].setFirstName(firstName);
+	this->_array[this->_nextToAdd].setLastName(lastName);
+	this->_array[this->_nextToAdd].setNickname(nickname);
+	this->_array[this->_nextToAdd].setPhoneNumber(phoneNumber);
+	this->_array[this->_nextToAdd].setDarkestSecret(darkestSecret);
+	this->_nextToAdd++;
+	this->_nextToAdd %= 8;
+	if (this->_nbContacts < 8)
+		this->_nbContacts++;
 }
 
 void PhoneBook::displayContact(int id)
@@ -50,24 +53,29 @@ void PhoneBook::displayPreview()
 	{
 		for (int i = 0; i < this->_nbContacts; i++)
 		{
-			std::cout << "|" << this->_array[i].getId();
-			for (unsigned long i = 0; i < 9; i++)
-				std::cout << " ";
-
+			std::cout << "|         " << this->_array[i].getId();
+			
+			std::cout << "|";
 			tmpStr = this->_array[i].getFirstName();
-			std::cout << "|" << trunc(tmpStr);
-			for (unsigned long i = 0; i < 10 - tmpStr.length(); i++)
-				std::cout << " ";
+			if (tmpStr.length() < 10)
+				for (unsigned long i = 0; i < (10 - tmpStr.length()); i++)
+					std::cout << " ";
+			std::cout << trunc(tmpStr);
 
+			std::cout << "|";
 			tmpStr = this->_array[i].getLastName();
-			std::cout << "|" << trunc(tmpStr);
-			for (unsigned long i = 0; i < 10 - tmpStr.length(); i++)
-				std::cout << " ";
+			if (tmpStr.length() < 10)
+				for (unsigned long i = 0; i < (10 - tmpStr.length()); i++)
+					std::cout << " ";
+			std::cout << trunc(tmpStr);
 
+			std::cout << "|";
 			tmpStr = this->_array[i].getNickname();
-			std::cout << "|" << trunc(tmpStr);
-			for (unsigned long i = 0; i < 10 - tmpStr.length(); i++)
-				std::cout << " ";
+			if (tmpStr.length() < 10)
+				for (unsigned long i = 0; i < (10 - tmpStr.length()); i++)
+					std::cout << " ";
+			std::cout << trunc(tmpStr);
+
 			std::cout << "|" << std::endl;
 		}
 	}
