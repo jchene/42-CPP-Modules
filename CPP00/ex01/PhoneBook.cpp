@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:46:56 by jchene            #+#    #+#             */
-/*   Updated: 2022/09/22 17:09:03 by jchene           ###   ########.fr       */
+/*   Updated: 2022/09/22 17:32:01 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 PhoneBook::PhoneBook()
 {
-	std::cout << "TEST" << std::endl;
 	this->_nbContacts = 0;
 	this->_nextToAdd = 0;
 }
