@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:48:42 by jchene            #+#    #+#             */
-/*   Updated: 2022/09/22 13:34:22 by jchene           ###   ########.fr       */
+/*   Updated: 2022/09/22 16:09:37 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,96 @@
 
 int main(void)
 {
-	std::string str;
-	char *id = NULL;
 	PhoneBook phoneBook;
+	std::string str;
+	std::string firstName = "";
+	std::string lastName = "";
+	std::string nickname = "";
+	std::string phoneNumber = "";
+	std::string darkestSecret = "";
+	int i;
 
+	std::cout << "\033c";
 	while (str != "EXIT")
 	{
 		std::cout << "Please enter a command:" << std::endl;
 		std::cin >> str;
 		if (str == "ADD")
 		{
-			if (phoneBook.getNbContacts() == 0)
+			while (firstName.empty() || lastName.empty() || nickname.empty() || phoneNumber.empty() || darkestSecret.empty())
 			{
-				std::cout << "\033c";
-				std::cout << "------------------[PhoneBook]-----------------" << std::endl;
-				phoneBook.newContact("fn1", "ln", "nn", "pn", "ds");
-				phoneBook.newContact("fn2", "ln", "nn", "pn", "ds");
-				std::cout << "Added contacts" << std::endl;
-				std::cout << "----------------------------------------------" << std::endl;
+				std::cout << "\033c" << "Creating contact" << std::endl << std::endl;
+				std::cout << " First Name: ";
+				if (firstName.empty())
+				{
+					std::getline(std::cin, firstName);
+					if (firstName.empty())
+						continue;
+				}
+				else
+					std::cout << firstName << std::endl;
+
+				std::cout << " Last Name: ";
+				if (lastName.empty())
+				{
+					std::getline(std::cin, lastName);
+					if (lastName.empty())
+						continue;
+				}
+				else
+					std::cout << lastName << std::endl;
+
+				std::cout << " Nickname: ";
+				if (nickname.empty())
+				{
+					std::getline(std::cin, nickname);
+					if (nickname.empty())
+						continue;
+				}
+				else
+					std::cout << nickname << std::endl;
+
+				std::cout << " Phone Number: ";
+				if (phoneNumber.empty())
+				{
+					std::getline(std::cin, phoneNumber);
+					if (phoneNumber.empty())
+						continue;
+				}
+				else
+					std::cout << phoneNumber << std::endl;
+
+				std::cout << " Darkest Secret: ";
+				if (darkestSecret.empty())
+				{
+					std::getline(std::cin, darkestSecret);
+					if (darkestSecret.empty())
+						continue;
+				}
+				else
+					std::cout << darkestSecret << std::endl;
 			}
+			phoneBook.newContact(firstName, lastName, nickname, phoneNumber, darkestSecret);
+			std::cout << "\033c" << "Contact created" << std::endl << std::endl;
 		}
-		if (str == "SEARCH")
+		else if (str == "SEARCH")
 		{
 			std::cout << "\033c";
-			std::cout << "------------------[PhoneBook]-----------------" << std::endl;
-			if (phoneBook.getNbContacts() > 0)
-				phoneBook.displayPreview();
-			std::cout << "----------------------------------------------" << std::endl;
-			if (phoneBook.getNbContacts() > 0)
-			{
-				while (std::atoi(id) < 0 || std::atoi(id) > phoneBook.getNbContacts())
-				{
-					std::cout << "Select contact id:" << std::endl;
-					std::cin >> id;
-				}
-				phoneBook.displayContact(std::atoi(id));
-			}
+			phoneBook.displayPreview();
+			std::cout << "Select contact id:" << std::endl;
+			std::cin >> str;
+			std::istringstream(str) >> i;
+			if (str.find_first_not_of("0123456789") == std::string::npos && i >= 0 && i < phoneBook.getNbContacts())
+				phoneBook.displayContact(i);
+			else
+				std::cout << "\033c"
+						  << "Please enter a valid contact id" << std::endl
+						  << std::endl;
 		}
+		else
+			std::cout << "\033c"
+					  << "Valid commands are: ADD, SEARCH, EXIT" << std::endl
+					  << std::endl;
 	}
 	return (0);
 }

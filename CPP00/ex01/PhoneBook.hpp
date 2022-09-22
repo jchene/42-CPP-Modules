@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:47:08 by jchene            #+#    #+#             */
-/*   Updated: 2022/09/22 13:27:18 by jchene           ###   ########.fr       */
+/*   Updated: 2022/09/22 16:05:51 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <sstream>
+#include <cctype>
 #include "Contact.hpp"
 
 class PhoneBook
