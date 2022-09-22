@@ -19,7 +19,7 @@ SRCS		:= megaphone.cpp
 
 OBJS		:= ${SRCS:.cpp=.o}
 
-HEADERS		:= megaphone.hpp
+HEADERS		:=
 
 .cpp.o:
 	${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}

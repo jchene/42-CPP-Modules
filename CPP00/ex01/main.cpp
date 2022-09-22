@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:48:42 by jchene            #+#    #+#             */
-/*   Updated: 2022/09/22 16:58:19 by jchene           ###   ########.fr       */
+/*   Updated: 2022/09/22 19:07:34 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ int main(void)
 	while (str != "EXIT")
 	{
 		std::cout << "Please enter a command:" << std::endl;
-		std::cin >> str;
+		std::getline(std::cin, str);
+		if (!std::cin)
+		{
+			std::cout << std::endl << "Closed std::cin, closing program" << std::endl;
+			return (-1);
+		}
 		if (str == "ADD")
 		{
 			firstName = "";
@@ -35,7 +40,7 @@ int main(void)
 			nickname = "";
 			phoneNumber = "";
 			darkestSecret = "";
-			while (firstName.empty() || lastName.empty() || nickname.empty() || phoneNumber.empty() || darkestSecret.empty())
+			while (std::cin && (firstName.empty() || lastName.empty() || nickname.empty() || phoneNumber.empty() || darkestSecret.empty()))
 			{
 				std::cout << "\033c" << "Creating contact" << std::endl << std::endl;
 				std::cout << " First Name: ";
@@ -88,6 +93,11 @@ int main(void)
 				else
 					std::cout << darkestSecret << std::endl;
 			}
+			if (!std::cin)
+			{
+				std::cout << std::endl << "Closed std::cin, closing program" << std::endl;
+				return (-1);
+			}
 			phoneBook.newContact(firstName, lastName, nickname, phoneNumber, darkestSecret);
 			std::cout << "\033c" << "Contact created" << std::endl << std::endl;
 		}
@@ -96,7 +106,12 @@ int main(void)
 			std::cout << "\033c";
 			phoneBook.displayPreview();
 			std::cout << "Select contact id:" << std::endl;
-			std::cin >> str;
+			std::getline(std::cin, str);
+			if (!std::cin)
+			{
+				std::cout << std::endl << "Closed std::cin, closing program" << std::endl;
+				return (-1);
+			}
 			std::istringstream(str) >> i;
 			if (str.find_first_not_of("0123456789") == std::string::npos && i >= 0 && i < phoneBook.getNbContacts())
 				phoneBook.displayContact(i);
