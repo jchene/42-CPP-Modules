@@ -6,11 +6,13 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:15:17 by jchene            #+#    #+#             */
-/*   Updated: 2022/09/21 14:53:18 by jchene           ###   ########.fr       */
+/*   Updated: 2022/09/22 17:13:35 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./megaphone.hpp"
+# include <iostream>
+# include <string>
+# include <locale>
 
 int main(int argc, char **argv)
 {
