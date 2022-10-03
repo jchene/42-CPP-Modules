@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 17:23:56 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/03 17:09:17 by jchene           ###   ########.fr       */
+/*   Created: 2022/09/22 17:24:01 by jchene            #+#    #+#             */
+/*   Updated: 2022/10/03 17:46:38 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
 
-void randomChump(std::string name);
-Zombie *newZombie(std::string name);
+# include <string>
+# include <iostream>
 
-int main()
+class Weapon
 {
-	Zombie *zomb1 = newZombie("heap");
-	zomb1->announce();
-	randomChump("stack");
-	std::cout << "All done." << std::endl;
-	delete zomb1;
-	return (0);
-}
+private:
+		std::string _type;
+
+public:
+		Weapon();
+		void setType(std::string name);
+		const std::string &getType();
+		~Weapon();
+};
+
+#endif

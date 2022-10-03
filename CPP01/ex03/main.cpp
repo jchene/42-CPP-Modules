@@ -6,21 +6,20 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:23:56 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/03 17:09:17 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/03 17:35:54 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-void randomChump(std::string name);
-Zombie *newZombie(std::string name);
+Zombie *zombieHorde(int n, std::string name);
 
 int main()
 {
-	Zombie *zomb1 = newZombie("heap");
-	zomb1->announce();
-	randomChump("stack");
+	Zombie *horde = zombieHorde(6, "Jacques");
+	for (int i = 0; i < 6; i++)
+		horde[i].announce();
 	std::cout << "All done." << std::endl;
-	delete zomb1;
+	delete [] horde;
 	return (0);
 }

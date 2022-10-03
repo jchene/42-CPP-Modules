@@ -6,21 +6,23 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:23:56 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/03 17:09:17 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/03 17:41:07 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-
-void randomChump(std::string name);
-Zombie *newZombie(std::string name);
+#include <string>
+#include <iostream>
 
 int main()
 {
-	Zombie *zomb1 = newZombie("heap");
-	zomb1->announce();
-	randomChump("stack");
-	std::cout << "All done." << std::endl;
-	delete zomb1;
+	std::string str = "HI THIS IS BRAIN";
+	std::string *stringPTR = &str;
+	std::string &stringREF = str;
+	std::cout << "str address: " << &str << std::endl;
+	std::cout << "str PTR address: " << stringPTR << std::endl;
+	std::cout << "str REF address: " << &stringREF << std::endl;
+	std::cout << "str address: " << str << std::endl;
+	std::cout << "str PTR address: " << *stringPTR << std::endl;
+	std::cout << "str REF address: " << stringREF << std::endl;
 	return (0);
 }

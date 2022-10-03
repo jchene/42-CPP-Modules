@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 17:23:56 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/03 17:09:17 by jchene           ###   ########.fr       */
+/*   Created: 2022/10/03 17:13:38 by jchene            #+#    #+#             */
+/*   Updated: 2022/10/03 17:22:40 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-void randomChump(std::string name);
-Zombie *newZombie(std::string name);
+Zombie	*zombieHorde(int n, std::string name){
+	Zombie *horde = new Zombie[n];
 
-int main()
-{
-	Zombie *zomb1 = newZombie("heap");
-	zomb1->announce();
-	randomChump("stack");
-	std::cout << "All done." << std::endl;
-	delete zomb1;
-	return (0);
+	for (int i = 0; i < n; i++)
+		horde[i].setName(name);
+	return (horde);
 }
