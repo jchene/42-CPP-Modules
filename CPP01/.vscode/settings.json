@@ -49,7 +49,8 @@
 		"streambuf": "cpp",
 		"typeinfo": "cpp",
 		"numbers": "cpp",
-		"locale": "cpp"
+		"locale": "cpp",
+		"map": "cpp"
 	},
 	"editor.suggestOnTriggerCharacters": true
 }
