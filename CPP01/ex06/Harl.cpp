@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:53:52 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/07 16:14:37 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:20:13 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,30 @@ void Harl::badComplain(void) {}
 void Harl::complain(std::string level)
 {
 	void (Harl::*functionPointers[])(void) = {&Harl::badComplain, &Harl::info, &Harl::debug, &Harl::warning, &Harl::error};
-	std::map<std::string, int> map;
-	map["INFO"] = 1;
-	map["DEBUG"] = 2;
-	map["WARNING"] = 3;
-	map["ERROR"] = 4;
-	(this->*functionPointers[map[level]])();
+	std::string complains[] = {"INFO", "DEBUG", "WARNING", "ERROR"};
+	int i;
+
+	for (i = 3; i >= 0; i--)
+		if (level == complains[i])
+			break;
+
+	for (int j = 0; j <= i; j++)
+		(this->*functionPointers[j + 1])();
 }
+
+/*void Harl::complain(std::string level)
+{
+	void (Harl::*functionPointers[])(void) = {&Harl::badComplain, &Harl::info, &Harl::debug, &Harl::warning, &Harl::error};
+	std::string complains[] = {"INFO", "DEBUG", "WARNING", "ERROR"};
+	std::map<std::string, int> map;
+	int i;
+
+	for (i = 0; i < 4; i++)
+		map[complains[i]] = i + 1;
+	i = map[level];
+
+	for (int j = 0; j <= i; j++)
+		(this->*functionPointers[j])();
+}*/
 
 Harl::~Harl() {}

@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 18:00:21 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/07 15:38:37 by jchene           ###   ########.fr       */
+/*   Created: 2022/10/06 16:53:50 by jchene            #+#    #+#             */
+/*   Updated: 2022/10/07 17:02:27 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#include <string>
 
-int main()
+class Harl
 {
-	Harl test;
+private:
+	void info(void);
+	void debug(void);
+	void warning(void);
+	void error(void);
 
-	test.complain("INFO");
-	test.complain("DEBUG");
-	test.complain("TEST");
-	test.complain("WARNING");
-	test.complain("ERROR");
-	
-	return (0);
-}
+	void badComplain(void);
+
+public:
+	Harl(void);
+	void complain(std::string level);
+	~Harl();
+};
