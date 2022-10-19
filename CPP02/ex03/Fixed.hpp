@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:22:13 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/19 13:07:35 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/19 13:07:39 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ public:
 	Fixed(const Fixed &cpy);
 	Fixed(const int nb);
 	Fixed(const float nb);
-	Fixed &operator=(const Fixed &rhs);
 	~Fixed();
 
+	Fixed &operator=(const Fixed &rhs);
 	Fixed operator+(const Fixed &rhs);
 	Fixed operator-(const Fixed &rhs);
 	Fixed operator*(const Fixed &rhs);
