@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:40:38 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/19 16:59:09 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/19 17:55:21 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 	Fixed areaSum(getTriangleArea(a, b, point));
 	areaSum = areaSum + getTriangleArea(a, c, point);
 	areaSum = areaSum + getTriangleArea(b, c, point);
-	return (abs(triangleArea - areaSum) < Fixed(0.01f));
+	std::cout << "diff: " << abs(triangleArea - areaSum).toFloat() << std::endl;
+	return (abs(triangleArea - areaSum) < Fixed(0.00001f));
 }

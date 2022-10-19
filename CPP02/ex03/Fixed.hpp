@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:22:13 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/19 17:25:13 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/19 17:53:41 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Fixed
 {
 private:
 	int _value;
-	static const int _fBits = 8;
+	static const int _fBits = 16;
 
 public:
 	Fixed();
