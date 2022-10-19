@@ -6,12 +6,12 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 15:13:12 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/19 13:07:27 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/19 17:35:30 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Fixed.hpp"
+
 int main(void)
 {
 	Fixed a;

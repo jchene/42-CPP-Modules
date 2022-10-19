@@ -6,13 +6,14 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:22:13 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/19 13:07:39 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/19 17:25:13 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 #define FIXED_HPP
 #include <iostream>
+#include <cmath>
 
 class Fixed
 {
@@ -25,21 +26,23 @@ public:
 	Fixed(const Fixed &cpy);
 	Fixed(const int nb);
 	Fixed(const float nb);
+	Fixed &operator=(const Fixed &rhs);
 	~Fixed();
 
-	Fixed &operator=(const Fixed &rhs);
 	Fixed operator+(const Fixed &rhs);
 	Fixed operator-(const Fixed &rhs);
 	Fixed operator*(const Fixed &rhs);
 	Fixed operator/(const Fixed &rhs);
-	Fixed operator++();
-	Fixed operator++(int);
 	bool operator>(const Fixed &rhs);
 	bool operator<(const Fixed &rhs);
 	bool operator>=(const Fixed &rhs);
 	bool operator<=(const Fixed &rhs);
 	bool operator==(const Fixed &rhs);
 	bool operator!=(const Fixed &rhs);
+	Fixed operator++();
+	Fixed operator++(int);
+	Fixed operator--();
+	Fixed operator--(int);
 
 	int getRawBits(void) const;
 	void setRawBits(int const raw);

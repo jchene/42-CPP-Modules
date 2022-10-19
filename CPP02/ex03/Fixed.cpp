@@ -6,53 +6,70 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 15:13:47 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/19 13:07:39 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/19 17:42:05 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cmath>
 #include "Fixed.hpp"
 
-Fixed::Fixed() : _value(0) { std::cout << "Default constructor called" << std::endl; }
+Fixed::Fixed() : _value(0)
+{
+	if (MSGS > 0)
+		std::cout << "Fixed default constructor called" << std::endl;
+}
 
-Fixed::Fixed(const Fixed &cpy) : _value(cpy._value) { std::cout << "Copy constructor called" << std::endl; }
+Fixed::Fixed(const Fixed &cpy) : _value(cpy._value)
+{
+	if (MSGS > 0)
+		std::cout << "Fixed copy constructor called" << std::endl;
+}
 
-Fixed::Fixed(const int nb) : _value(nb << this->_fBits) { std::cout << "Int constructor called" << std::endl; }
+Fixed::Fixed(const int nb) : _value(nb << this->_fBits)
+{
+	if (MSGS > 1)
+		std::cout << "Fixed int constructor called" << std::endl;
+}
 
-Fixed::Fixed(const float nb) : _value(roundf(nb * (1 << this->_fBits))) { std::cout << "Float constructor called" << std::endl; }
-
-Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
+Fixed::Fixed(const float nb) : _value(roundf(nb * (1 << this->_fBits)))
+{
+	if (MSGS > 1)
+		std::cout << "Fixed float constructor called" << std::endl;
+}
 
 Fixed &Fixed::operator=(const Fixed &rhs)
 {
+	if (MSGS > 0)
+		std::cout << "Fixed copy assignment operator called" << std::endl;
 	if (&rhs != this)
 		this->_value = rhs.getRawBits();
 	return (*this);
 }
 
-Fixed Fixed::operator+(const Fixed &rhs)
+Fixed::~Fixed()
 {
-	Fixed result(this->toFloat() + rhs.toFloat());
-	return (result);
+	if (MSGS > 0)
+		std::cout << "Fixed destructor called" << std::endl;
 }
 
-Fixed Fixed::operator-(const Fixed &rhs)
-{
-	Fixed result(this->toFloat() - rhs.toFloat());
-	return (result);
-}
+Fixed Fixed::operator+(const Fixed &rhs) { return (Fixed(this->toFloat() + rhs.toFloat())); }
 
-Fixed Fixed::operator*(const Fixed &rhs)
-{
-	Fixed result(this->toFloat() * rhs.toFloat());
-	return (result);
-}
+Fixed Fixed::operator-(const Fixed &rhs) { return (Fixed(this->toFloat() - rhs.toFloat())); }
 
-Fixed Fixed::operator/(const Fixed &rhs)
-{
-	Fixed result(this->toFloat() / rhs.toFloat());
-	return (result);
-}
+Fixed Fixed::operator*(const Fixed &rhs) { return (Fixed(this->toFloat() * rhs.toFloat())); }
+
+Fixed Fixed::operator/(const Fixed &rhs) { return (Fixed(this->toFloat() / rhs.toFloat())); }
+
+bool Fixed::operator>(const Fixed &rhs) { return (this->toFloat() > rhs.toFloat()); }
+
+bool Fixed::operator<(const Fixed &rhs) { return (this->toFloat() < rhs.toFloat()); }
+
+bool Fixed::operator>=(const Fixed &rhs) { return (this->toFloat() >= rhs.toFloat()); }
+
+bool Fixed::operator<=(const Fixed &rhs) { return (this->toFloat() <= rhs.toFloat()); }
+
+bool Fixed::operator==(const Fixed &rhs) { return (this->toFloat() == rhs.toFloat()); }
+
+bool Fixed::operator!=(const Fixed &rhs) { return (this->toFloat() != rhs.toFloat()); }
 
 Fixed Fixed::operator++()
 {
@@ -67,17 +84,18 @@ Fixed Fixed::operator++(int)
 	return (result);
 }
 
-bool Fixed::operator>(const Fixed &rhs) { return (this->toFloat() > rhs.toFloat()); }
+Fixed Fixed::operator--()
+{
+	this->setRawBits(this->getRawBits() - 1);
+	return (*this);
+}
 
-bool Fixed::operator<(const Fixed &rhs) { return (this->toFloat() < rhs.toFloat()); }
-
-bool Fixed::operator>=(const Fixed &rhs) { return (this->toFloat() >= rhs.toFloat()); }
-
-bool Fixed::operator<=(const Fixed &rhs) { return (this->toFloat() <= rhs.toFloat()); }
-
-bool Fixed::operator==(const Fixed &rhs) { return (this->toFloat() == rhs.toFloat()); }
-
-bool Fixed::operator!=(const Fixed &rhs) { return (this->toFloat() != rhs.toFloat()); }
+Fixed Fixed::operator--(int)
+{
+	Fixed result(this->toFloat());
+	this->setRawBits(this->getRawBits() - 1);
+	return (result);
+}
 
 int Fixed::getRawBits(void) const { return (this->_value); }
 

@@ -8,8 +8,8 @@
 ################################################################################
 
 NAME		:= Fixed
-CC		  := c++
-FLAGS	   := -Wall -Wextra -Werror -std=c++98 -g
+CC			:= c++
+FLAGS		:= -Wall -Wextra -Werror -std=c++98 -D MSGS=2
  
 ################################################################################
 #								 PROGRAM'S SRCS							   #
@@ -44,16 +44,16 @@ ${NAME}:	${OBJS} ${HEADERS} Makefile
 
 all:		${NAME}
 
-bonus:	  all
+bonus:	all
 
 clean:
 			@ ${RM} *.o */*.o */*/*.o
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
 
-fclean:	 clean
+fclean:	clean
 			@ ${RM} ${NAME}
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
-re:		 fclean all
+re:		fclean all
 
-.PHONY:	 all clean fclean re
+.PHONY:	all clean fclean re

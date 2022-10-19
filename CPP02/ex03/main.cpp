@@ -6,22 +6,21 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 15:13:12 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/19 13:07:40 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/19 17:04:10 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "Point.hpp"
 
 int main(void)
 {
-	Fixed a;
-	Fixed const b(Fixed(5.05f) * Fixed(2));
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	return 0;
+	Point a(-25.3f, 21.6f);
+	Point b(12, 13);
+	Point c(4, -3);
+	Point point(-18.2f, 4.5f);
+	Point point2(-5, 12);
+	bool inTriangle = bsp(a, b, c, point2);
+
+	std::cout << "Point is in triangle: " << inTriangle << std::endl;
+	return (0);
 }
