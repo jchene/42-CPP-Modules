@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 15:13:12 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/19 17:54:42 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/20 12:48:46 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int main(void)
 	Point point(-18.2f, 4.5f);
 	Point point2(-5, 12);
 	Point point3(4, -3);
+	Point point4(-4.91f, 16.9);
 	bool inTriangle = bsp(a, b, c, point3);
 
 	std::cout << "Point is in triangle: " << inTriangle << std::endl;

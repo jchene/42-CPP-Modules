@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:07:53 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/19 17:11:53 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/20 12:30:49 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ Point &Point::operator=(const Point &rhs)
 		std::cout << "Point copy assignment operator called" << std::endl;
 	(void)rhs;
 	return (*this);
+}
+
+bool Point::operator==(const Point &rhs) const
+{
+	if (MSGS > 1)
+		std::cout << "Point comparison operator called" << std::endl;
+	return ((this->getX() == rhs.getX()) && (this->getY() == rhs.getY()));
 }
 
 Fixed Point::getX() const { return (this->_x); }

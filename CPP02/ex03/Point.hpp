@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:07:51 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/19 17:14:33 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/20 12:29:32 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ public:
 	Point(const float x, const float y);
 	Point(const Fixed x, const Fixed y);
 	Point &operator=(const Point &rhs);
+	bool operator==(const Point &rhs) const;
 	~Point();
 
 	Fixed getX() const;
