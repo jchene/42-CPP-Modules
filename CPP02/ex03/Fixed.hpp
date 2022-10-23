@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:22:13 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/21 12:24:00 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/21 15:08:26 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ public:
 	Fixed &operator=(const Fixed &rhs);
 	~Fixed();
 
-	Fixed operator+(const Fixed &rhs);
-	Fixed operator-(const Fixed &rhs);
-	Fixed operator*(const Fixed &rhs);
-	Fixed operator/(const Fixed &rhs);
-	bool operator>(const Fixed &rhs);
-	bool operator<(const Fixed &rhs);
-	bool operator>=(const Fixed &rhs);
-	bool operator<=(const Fixed &rhs);
-	bool operator==(const Fixed &rhs);
-	bool operator!=(const Fixed &rhs);
+	Fixed operator+(const Fixed &rhs) const;
+	Fixed operator-(const Fixed &rhs) const;
+	Fixed operator*(const Fixed &rhs) const;
+	Fixed operator/(const Fixed &rhs) const;
+	bool operator>(const Fixed &rhs) const;
+	bool operator<(const Fixed &rhs) const;
+	bool operator>=(const Fixed &rhs) const;
+	bool operator<=(const Fixed &rhs) const;
+	bool operator==(const Fixed &rhs) const;
+	bool operator!=(const Fixed &rhs) const;
 	Fixed operator++();
 	Fixed operator++(int);
 	Fixed operator--();
