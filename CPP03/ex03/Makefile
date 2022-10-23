@@ -7,9 +7,9 @@
 #									 CONFIG								   #
 ################################################################################
 
-NAME		:= FragTrap
+NAME		:= DiamondTrap
 CC			:= c++
-FLAGS		:= -Wall -Wextra -Werror -std=c++98 -D MSGS=1
+FLAGS		:= -Wall -Wextra -Werror -Wshadow -std=c++98 -D MSGS=1
  
 ################################################################################
 #								 PROGRAM'S SRCS							   #
@@ -19,12 +19,14 @@ SRCS		:=  main.cpp \
 				ClapTrap.cpp \
 				ScavTrap.cpp \
 				FragTrap.cpp \
+				DiamondTrap.cpp \
 
 OBJS		:=  ${SRCS:.cpp=.o}
 
 HEADERS 	:=  ClapTrap.hpp \
 				ScavTrap.hpp \
 				FragTrap.hpp \
+				DiamondTrap.hpp \
 
 .cpp.o:
 			${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}

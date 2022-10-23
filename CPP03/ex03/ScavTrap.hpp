@@ -6,15 +6,15 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 19:29:24 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/23 20:42:23 by jchene           ###   ########.fr       */
+/*   Updated: 2022/10/24 00:47:53 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
-private:
+protected:
 	bool _guardMode;
 
 public:
@@ -22,7 +22,7 @@ public:
 	ScavTrap(std::string name);
 	ScavTrap(const ScavTrap &ref);
 	ScavTrap &operator=(const ScavTrap &rhs);
-	~ScavTrap();
+	virtual ~ScavTrap();
 
 	bool isGuarding() const;
 
