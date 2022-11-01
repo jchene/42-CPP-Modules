@@ -6,74 +6,78 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 18:34:08 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/23 22:51:50 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/01 16:54:12 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap("Unnamed Scav"), _guardMode(false)
+ScavTrap::ScavTrap() : _guardMode(false)
 {
 	if (MSGS > 0)
-		std::cout << this->_name << " ScavTrap default constructor called" << std::endl;
+		std::cout << "ScavTrap default constructor called" << std::endl;
+	this->_name = "unnamed Scav";
+	this->_hitPoints =  100;
+	this->_energyPoints =  50;
+	this->_attackDamage =  20;
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name), _guardMode(false)
+ScavTrap::ScavTrap(std::string name) : _guardMode(false)
 {
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
 	if (MSGS > 0)
-		std::cout << this->_name << " ScavTrap string constructor called" << std::endl;
+		std::cout << "ScavTrap string constructor called" << std::endl;
+	this->_name = name;
+	this->_hitPoints =  100;
+	this->_energyPoints =  50;
+	this->_attackDamage =  20;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &ref) : ClapTrap(ref), _guardMode(false)
+ScavTrap::ScavTrap(const ScavTrap &ref) : ClapTrap(), _guardMode(false)
 {
 	if (MSGS > 0)
-		std::cout << this->_name << " ScavTrap copy constructor called" << std::endl;
+		std::cout << "ScavTrap copy constructor called" << std::endl;
+	this->_name = ref.getName();
+	this->_hitPoints =  ref.getHp();
+	this->_energyPoints =  ref.getEp();
+	this->_attackDamage =  ref.getAd();
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &rhs)
 {
-	this->_name =rhs.getName();
-	this->_hitPoints = rhs.getHp();
-	this->_energyPoints = rhs.getEp();
-	this->_attackDamage = rhs.getAd();
-	this->_guardMode = rhs._guardMode;
 	if (MSGS > 0)
-		std::cout << this->_name << " ScavTrap copy assignment operator called" << std::endl;
+		std::cout << "ScavTrap copy assignment operator called" << std::endl;
+	this->_name = rhs.getName();
+	this->_hitPoints =  rhs.getHp();
+	this->_energyPoints =  rhs.getEp();
+	this->_attackDamage =  rhs.getAd();
+	this->_guardMode = rhs._guardMode;
 	return (*this);
 }
 
 ScavTrap::~ScavTrap() 
 {
 	if (MSGS > 0)
-		std::cout << this->_name << " ScavTrap destructor called on " << this->getName() << std::endl;
+		std::cout << "ScavTrap destructor called on " << this->getName() << std::endl;
 }
 
 bool ScavTrap::isGuarding() const { return (this->_guardMode); }
 
 void ScavTrap::attack(const std::string &target)
 {
-	if (this->_energyPoints > 1)
+	if (this->getEp() > 1)
 	{
-		this->_energyPoints--;
-		std::cout << this->_name << " attacks " << target << " with great power, causing " << this->getAd() << " points of damage!" << std::endl;
+		this->setEp(this->getEp() - 1);
+		std::cout << "ScavTrap " << this->getName() << " attacks " << target << " with great power, causing " << this->getAd() << " points of damage!" << std::endl;
 	}
 	else
-		std::cout << "The mighty " << this->_name << " ScavTrap has no energy to spend, it can't be repaired" << std::endl;
+		std::cout << "The mighty ScavTrap has no energy to spend, it can't be repaired" << std::endl;
 }
 
 void ScavTrap::guardGate()
 {
 	if (this->_guardMode)
-	{
-		std::cout << this->_name << " has stopped guarding the gate." << std::endl;
-		this->_guardMode = false;
-	}
+		std::cout << "ScavTrap " << this->getName() << " is already guarding the gate." << std::endl;
 	else
-	{
-		std::cout << this->_name << " has started guarding the gate." << std::endl;
-		this->_guardMode = true;
-	}
+		std::cout << "ScavTrap " << this->getName() << " has started guarding the gate." << std::endl;
+	this->_guardMode = true;
 }
