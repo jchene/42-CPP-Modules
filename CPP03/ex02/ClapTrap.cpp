@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 18:34:08 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/23 20:37:42 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/03 15:47:34 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,6 @@ unsigned int ClapTrap::getHp() const { return (this->_hitPoints); }
 unsigned int ClapTrap::getEp() const { return (this->_energyPoints); }
 
 unsigned int ClapTrap::getAd() const { return (this->_attackDamage); }
-
-void ClapTrap::setName(std::string name) { this->_name = name; }
-
-void ClapTrap::setHp(unsigned int amount) { this->_hitPoints = amount; }
-
-void ClapTrap::setEp(unsigned int amount) { this->_energyPoints = amount; }
-
-void ClapTrap::setAd(unsigned int amount) { this->_attackDamage = amount; }
 
 void ClapTrap::attack(const std::string &target)
 {
