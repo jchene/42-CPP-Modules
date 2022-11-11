@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 18:34:08 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/03 15:52:39 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/11 20:30:53 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ FragTrap::~FragTrap()
 
 void FragTrap::highFivesGuys(void)
 {
-	std::cout << this->getName() << " wants to do a high five!" << std::endl;
+	std::cout << this->_name << " wants to do a high five!" << std::endl;
 }

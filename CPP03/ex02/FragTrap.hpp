@@ -6,11 +6,11 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 19:29:24 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/23 20:35:46 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/11 20:30:03 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "ClapTrap.hpp"
 
 class FragTrap : public ClapTrap
 {

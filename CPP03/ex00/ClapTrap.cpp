@@ -6,19 +6,19 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 18:34:08 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/23 19:26:13 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/11 17:57:16 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _name("unnamed"), _hitPoints(10), _energyPoints(10), _attackDamage(10)
+ClapTrap::ClapTrap() : _name("unnamed Clap"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
 	if (MSGS > 0)
 		std::cout << "ClapTrap default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(10)
+ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
 	if (MSGS > 0)
 		std::cout << "ClapTrap string constructor called" << std::endl;
@@ -41,7 +41,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &rhs)
 	return (*this);
 }
 
-ClapTrap::~ClapTrap() 
+ClapTrap::~ClapTrap()
 {
 	if (MSGS > 0)
 		std::cout << "ClapTrap destructor called" << std::endl;

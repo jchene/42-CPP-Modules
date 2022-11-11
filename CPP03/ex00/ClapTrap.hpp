@@ -6,22 +6,25 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 18:34:10 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/23 19:56:06 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/11 17:57:21 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
 #include <iostream>
+#ifndef MSGS
+#define MSGS 1
+#endif
 
 class ClapTrap
 {
-	private:
+private:
 	std::string _name;
 	unsigned int _hitPoints;
 	unsigned int _energyPoints;
 	unsigned int _attackDamage;
 
-	public:
+public:
 	ClapTrap();
 	ClapTrap(std::string name);
 	ClapTrap(const ClapTrap &ref);

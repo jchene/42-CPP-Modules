@@ -9,7 +9,7 @@
 
 NAME		:= ScavTrap
 CC			:= c++
-FLAGS		:= -Wall -Wextra -Werror -std=c++98 -D MSGS=1
+FLAGS		:= -Wall -Wextra -Werror -std=c++98 -D MSGS=0
  
 ################################################################################
 #								 PROGRAM'S SRCS							   #

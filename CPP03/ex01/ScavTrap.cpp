@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 18:34:08 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/01 16:54:12 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/11 18:17:30 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ ScavTrap::ScavTrap() : _guardMode(false)
 	if (MSGS > 0)
 		std::cout << "ScavTrap default constructor called" << std::endl;
 	this->_name = "unnamed Scav";
-	this->_hitPoints =  100;
-	this->_energyPoints =  50;
-	this->_attackDamage =  20;
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
 }
 
 ScavTrap::ScavTrap(std::string name) : _guardMode(false)
@@ -27,9 +27,9 @@ ScavTrap::ScavTrap(std::string name) : _guardMode(false)
 	if (MSGS > 0)
 		std::cout << "ScavTrap string constructor called" << std::endl;
 	this->_name = name;
-	this->_hitPoints =  100;
-	this->_energyPoints =  50;
-	this->_attackDamage =  20;
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &ref) : ClapTrap(), _guardMode(false)
@@ -37,9 +37,9 @@ ScavTrap::ScavTrap(const ScavTrap &ref) : ClapTrap(), _guardMode(false)
 	if (MSGS > 0)
 		std::cout << "ScavTrap copy constructor called" << std::endl;
 	this->_name = ref.getName();
-	this->_hitPoints =  ref.getHp();
-	this->_energyPoints =  ref.getEp();
-	this->_attackDamage =  ref.getAd();
+	this->_hitPoints = ref.getHp();
+	this->_energyPoints = ref.getEp();
+	this->_attackDamage = ref.getAd();
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &rhs)
@@ -47,26 +47,24 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &rhs)
 	if (MSGS > 0)
 		std::cout << "ScavTrap copy assignment operator called" << std::endl;
 	this->_name = rhs.getName();
-	this->_hitPoints =  rhs.getHp();
-	this->_energyPoints =  rhs.getEp();
-	this->_attackDamage =  rhs.getAd();
+	this->_hitPoints = rhs.getHp();
+	this->_energyPoints = rhs.getEp();
+	this->_attackDamage = rhs.getAd();
 	this->_guardMode = rhs._guardMode;
 	return (*this);
 }
 
-ScavTrap::~ScavTrap() 
+ScavTrap::~ScavTrap()
 {
 	if (MSGS > 0)
 		std::cout << "ScavTrap destructor called on " << this->getName() << std::endl;
 }
 
-bool ScavTrap::isGuarding() const { return (this->_guardMode); }
-
 void ScavTrap::attack(const std::string &target)
 {
 	if (this->getEp() > 1)
 	{
-		this->setEp(this->getEp() - 1);
+		this->_energyPoints =  this->_energyPoints - 1;
 		std::cout << "ScavTrap " << this->getName() << " attacks " << target << " with great power, causing " << this->getAd() << " points of damage!" << std::endl;
 	}
 	else

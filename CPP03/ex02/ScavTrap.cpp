@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 18:34:08 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/03 15:53:26 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/11 18:17:30 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,18 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &rhs)
 	return (*this);
 }
 
-ScavTrap::~ScavTrap() 
+ScavTrap::~ScavTrap()
 {
 	if (MSGS > 0)
 		std::cout << "ScavTrap destructor called on " << this->getName() << std::endl;
 }
 
-bool ScavTrap::isGuarding() const { return (this->_guardMode); }
-
 void ScavTrap::attack(const std::string &target)
 {
 	if (this->getEp() > 1)
 	{
-		this->_energyPoints = this->getEp() - 1);
-		std::cout << this->getName() << " attacks " << target << " with great power, causing " << this->getAd() << " points of damage!" << std::endl;
+		this->_energyPoints =  this->_energyPoints - 1;
+		std::cout << "ScavTrap " << this->getName() << " attacks " << target << " with great power, causing " << this->getAd() << " points of damage!" << std::endl;
 	}
 	else
 		std::cout << "The mighty ScavTrap has no energy to spend, it can't be repaired" << std::endl;
@@ -76,13 +74,8 @@ void ScavTrap::attack(const std::string &target)
 void ScavTrap::guardGate()
 {
 	if (this->_guardMode)
-	{
-		std::cout << this->getName() << " has stopped guarding the gate." << std::endl;
-		this->_guardMode = false;
-	}
+		std::cout << "ScavTrap " << this->getName() << " is already guarding the gate." << std::endl;
 	else
-	{
-		std::cout << this->getName() << " has started guarding the gate." << std::endl;
-		this->_guardMode = true;
-	}
+		std::cout << "ScavTrap " << this->getName() << " has started guarding the gate." << std::endl;
+	this->_guardMode = true;
 }
