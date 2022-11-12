@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 18:34:13 by jchene            #+#    #+#             */
-/*   Updated: 2022/10/23 20:41:19 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/12 19:21:10 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,16 @@
 
 int main()
 {
-	ClapTrap Clap1("Roger");
-	ScavTrap Scav1("Brutus");
-	FragTrap Frag1("Megatron");
+	DiamondTrap diamond1 = DiamondTrap();
+	diamond1.whoAmI();
 
-	Clap1.attack(Scav1.getName());
-	Scav1.takeDamage(Clap1.getAd());
-	Scav1.attack(Frag1.getName());
-	Frag1.takeDamage(Scav1.getAd());
-	Frag1.attack(Clap1.getName());
-	Clap1.takeDamage(Frag1.getAd());
+	DiamondTrap diamond2 = DiamondTrap("Roger");
+	diamond2.whoAmI();
 
-	FragTrap Frag2(Frag1);
+	DiamondTrap diamond3 = DiamondTrap(diamond1);
+	diamond3.whoAmI();
 
-	std::cout << "Frag2 has " << Frag2.getHp() << " hit points" << std::endl;
-
-	FragTrap Frag3;
-	Frag3 = Frag2;
-
-	std::cout << "Frag3 has " << Frag3.getHp() << " hit points" << std::endl;
-
-	Frag1.highFivesGuys();
-
+	diamond3 = diamond2;
+	diamond3.whoAmI();
 	return (0);
 }

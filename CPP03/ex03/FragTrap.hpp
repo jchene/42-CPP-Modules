@@ -6,13 +6,13 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 19:29:24 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/11 21:14:13 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/12 19:05:32 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 public:
 	FragTrap();

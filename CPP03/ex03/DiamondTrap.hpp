@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 20:40:26 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/11 21:14:12 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/12 18:41:08 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ public:
 	DiamondTrap(const DiamondTrap &ref);
 	DiamondTrap &operator=(const DiamondTrap &rhs);
 	~DiamondTrap();
+
+	std::string getName() const;
+	unsigned int getHp() const;
+	unsigned int getEp() const;
+	unsigned int getAd() const;
 
 	void attack(const std::string &target);
 	void whoAmI();
