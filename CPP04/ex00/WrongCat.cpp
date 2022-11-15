@@ -1,47 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 13:30:03 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/15 15:12:21 by jchene           ###   ########.fr       */
+/*   Created: 2022/11/15 15:12:40 by jchene            #+#    #+#             */
+/*   Updated: 2022/11/15 15:21:00 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongCat.hpp"
 
-Animal::Animal() : _type("Animal")
+WrongCat::WrongCat() : WrongAnimal()
 {
 	if (MSGS > 0)
-		std::cout << "Animal default c.tor called" << std::endl;
+		std::cout << "WrongCat default c.tor called" << std::endl;
+	this->_type = "Cat";
 }
 
-Animal::Animal(const Animal &ref)
+WrongCat::WrongCat(const WrongCat &ref) : WrongAnimal()
 {
 	if (MSGS > 0)
-		std::cout << "Animal copy c.tor called" << std::endl;
+		std::cout << "WrongCat copy c.tor called" << std::endl;
 	this->_type = ref.getType();
 }
 
-Animal &Animal::operator=(const Animal &rhs)
+WrongCat &WrongCat::operator=(const WrongCat &rhs)
 {
 	if (MSGS > 0)
-		std::cout << "Animal copy assignment o.tor called" << std::endl;
+		std::cout << "WrongCat copy assignment o.tor called" << std::endl;
 	this->_type = rhs.getType();
 	return (*this);
 }
 
-Animal::~Animal()
+WrongCat::~WrongCat()
 {
 	if (MSGS > 0)
-		std::cout << "Animal default d.tor called" << std::endl;
-}
-
-std::string Animal::getType() const { return(this->_type); }
-
-void Animal::makeSound() const
-{
-	std::cout << "Animal: *unrecognizable growl*" << std::endl;
+		std::cout << "WrongCat default d.tor called" << std::endl;
 }

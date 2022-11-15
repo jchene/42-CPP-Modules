@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 13:37:55 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/15 15:41:55 by jchene           ###   ########.fr       */
+/*   Created: 2022/11/13 14:00:50 by jchene            #+#    #+#             */
+/*   Updated: 2022/11/15 16:52:56 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MSGS
-#define MSGS 1
-#endif
-#ifndef LIB_PROTEC
-#define LIB_PROTEC
-#include <string>
-#include <iostream>
-#endif
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#include "Animal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
+//#include "Acat.hpp"
 
-class Animal
+int main()
 {
-protected:
-	std::string _type;
-
-public:
-	Animal();
-	Animal(const Animal &ref);
-	Animal &operator=(const Animal &rhs);
-	virtual ~Animal();
-
-	std::string getType() const;
-	virtual void makeSound() const;
-};
-
-#endif
+	Animal *array[10];
+	int i;
+	for (i = 0; i < 5; i++)
+		array[i] = new Dog();
+	for (i = 0; i < 5; i++)
+		array[i + 5] = new Cat();
+	//array[9] = new Acat();
+	for (i = 0; i < 10; i++)
+		delete(array[i]);
+	return 0;
+}

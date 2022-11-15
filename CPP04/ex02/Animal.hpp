@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 13:37:55 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/15 15:41:55 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/15 16:46:52 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ public:
 	virtual ~Animal();
 
 	std::string getType() const;
-	virtual void makeSound() const;
+	virtual void makeSound() const = 0;
 };
 
 #endif

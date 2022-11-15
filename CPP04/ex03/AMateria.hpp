@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 13:37:55 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/15 15:41:55 by jchene           ###   ########.fr       */
+/*   Created: 2022/11/15 16:54:32 by jchene            #+#    #+#             */
+/*   Updated: 2022/11/15 17:00:17 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MSGS
 #define MSGS 1
 #endif
-#ifndef LIB_PROTEC
-#define LIB_PROTEC
-#include <string>
+#ifndef LIBPROTEC
+#define LIBPROTEC
 #include <iostream>
+#include <string>
 #endif
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef AMATERIA_HPP
+#define AMATERIA_HPP
+#include ""
 
-class Animal
+class AMateria
 {
 protected:
 	std::string _type;
 
 public:
-	Animal();
-	Animal(const Animal &ref);
-	Animal &operator=(const Animal &rhs);
-	virtual ~Animal();
+	AMateria(std::string const &type);
+	AMateria(const AMateria &ref);
+	AMateria &operator=(const AMateria &rhs);
+	virtual ~AMateria();
 
-	std::string getType() const;
-	virtual void makeSound() const;
+	std::string const &getType() const; // Returns the materia type
+	virtual AMateria *clone() const = 0;
+	virtual void use(ICharacter &target);
 };
 
 #endif
