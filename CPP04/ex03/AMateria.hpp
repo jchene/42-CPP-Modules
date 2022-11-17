@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:54:32 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/15 17:00:17 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/17 17:44:42 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #endif
 #ifndef AMATERIA_HPP
 #define AMATERIA_HPP
-#include ""
+#include "ICharacter.hpp"
 
 class AMateria
 {

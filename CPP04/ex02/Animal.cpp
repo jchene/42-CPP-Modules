@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 13:30:03 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/15 15:12:21 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/17 18:00:52 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,3 @@ Animal::~Animal()
 }
 
 std::string Animal::getType() const { return(this->_type); }
-
-void Animal::makeSound() const
-{
-	std::cout << "Animal: *unrecognizable growl*" << std::endl;
-}
