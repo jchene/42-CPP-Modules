@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 18:03:20 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/18 19:32:49 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/19 19:13:27 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Character::Character(std::string const &name)
 	if (MSGS > 0)
 		std::cout << "Character default c.tor called" << std::endl;
 	this->_name = name;
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
 }
 
@@ -28,9 +28,9 @@ Character::Character(const Character &ref)
 	if (MSGS > 0)
 		std::cout << "Character copy c.tor called" << std::endl;
 	this->_name = ref.getName();
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		if (this->_inventory[i])
+		if (this->_inventory[i] != NULL)
 		{
 			delete (this->_inventory[i]);
 			this->_inventory[i] = NULL;
@@ -45,9 +45,9 @@ Character &Character::operator=(const Character &rhs)
 	if (MSGS > 0)
 		std::cout << "Character copy assignment o.tor called" << std::endl;
 	this->_name = rhs.getName();
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		if (this->_inventory[i])
+		if (this->_inventory[i] != NULL)
 		{
 			delete (this->_inventory[i]);
 			this->_inventory[i] = NULL;
@@ -55,6 +55,7 @@ Character &Character::operator=(const Character &rhs)
 		if (rhs.getMateria(i))
 			this->_inventory[i] = rhs.getMateria(i)->clone();
 	}
+	return (*this);
 }
 
 Character::~Character()
@@ -63,8 +64,11 @@ Character::~Character()
 		std::cout << "Character d.tor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->_inventory[i])
+		if (this->_inventory[i] != NULL)
+		{
 			delete (this->_inventory[i]);
+			this->_inventory[i] = NULL;
+		}
 	}
 }
 
@@ -79,13 +83,20 @@ std::string const &Character::getName() const { return (this->_name); }
 
 void Character::equip(AMateria *m)
 {
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		if (this->_inventory[i] && this->_inventory[i] == m)
 			return;
-		if (!(this->_inventory))
-			this->_inventory[i] = m;
 	}
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->_inventory[i] == NULL)
+		{
+			this->_inventory[i] = m;
+			return;
+		}
+	}
+	
 }
 
 void Character::unequip(int idx)
@@ -95,7 +106,7 @@ void Character::unequip(int idx)
 }
 
 void Character::use(int idx, ICharacter &target)
-{ 
-	if (idx >= 0 && idx <= 3)
+{
+	if (idx >= 0 && idx <= 3 && this->_inventory[idx] != NULL)
 		this->_inventory[idx]->use(target);
 }

@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:54:35 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/18 19:21:10 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/19 17:10:12 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ AMateria &AMateria::operator=(const AMateria &rhs)
 	if (MSGS > 0)
 		std::cout << "AMateria copy assignment o.tor called" << std::endl;
 	this->_type = rhs.getType();
+	return (*this);
 }
 
 AMateria::~AMateria()

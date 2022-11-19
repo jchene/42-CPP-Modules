@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 19:25:33 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/18 19:33:55 by jchene           ###   ########.fr       */
+/*   Updated: 2022/11/19 19:08:35 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define MATERIASOURCE_HPP
 #include "IMateriaSource.hpp"
 
-class MateriaSource
+class MateriaSource : public IMateriaSource
 {
 protected:
 	AMateria *_sourceInventory[4];
@@ -27,6 +27,7 @@ public:
 
 	void learnMateria(AMateria *m);
 	AMateria *createMateria(std::string const &type);
+	AMateria *getMateria(int idx) const;
 };
 
 #endif
