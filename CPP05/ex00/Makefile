@@ -7,7 +7,7 @@
 #									 CONFIG								   #
 ################################################################################
 
-NAME		:= Interfaces
+NAME		:= Bureaucrat
 CC			:= c++
 FLAGS		:= -Wall -Wextra -Werror -std=c++98 -g -D MSGS=0
  
@@ -16,21 +16,11 @@ FLAGS		:= -Wall -Wextra -Werror -std=c++98 -g -D MSGS=0
 ################################################################################
 
 SRCS		:=  main.cpp \
-				AMateria.cpp \
-				Ice.cpp \
-				Cure.cpp \
-				Character.cpp \
-				MateriaSource.cpp \
+				Bureaucrat.cpp \
 
 OBJS		:=  ${SRCS:.cpp=.o}
 
-HEADERS 	:=  AMateria.hpp \
-				Ice.hpp \
-				Cure.hpp \
-				ICharacter.hpp \
-				Character.hpp \
-				IMateriaSource.hpp \
-				MateriaSource.hpp \
+HEADERS 	:=  Bureaucrat.hpp \
 
 .cpp.o:
 			${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}
