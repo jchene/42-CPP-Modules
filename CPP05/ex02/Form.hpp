@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 16:04:12 by jchene            #+#    #+#             */
-/*   Updated: 2022/12/01 11:11:30 by jchene           ###   ########.fr       */
+/*   Updated: 2022/12/01 18:47:55 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Bureaucrat;
 
 class Form
 {
-private:
+protected:
 	class GradeTooLowException : public std::exception
 	{
 		const char *what() const throw();
@@ -35,7 +35,7 @@ private:
 		const char *what() const throw();
 	};
 
-private:
+protected:
 	const std::string _name;
 	bool _signed;
 	const int _signGrade;

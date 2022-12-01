@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 19:37:18 by jchene            #+#    #+#             */
-/*   Updated: 2022/11/30 14:51:09 by jchene           ###   ########.fr       */
+/*   Updated: 2022/12/01 18:52:03 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 	if (MSGS > 0)
 		std::cout << "Bureaucrat default c.tor called" << std::endl;
 	if (grade < 1)
-		throw (GradeTooLowException());
-	if (grade > 150)
 		throw (GradeTooHighException());
+	if (grade > 150)
+		throw (GradeTooLowException());
 	this->_grade = grade;
 }
 
