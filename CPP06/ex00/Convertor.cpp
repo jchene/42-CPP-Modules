@@ -3,10 +3,12 @@
 // EXCEPTIONS
 
 // COPLIEN
-Convertor::Convertor(char *str)
+Convertor::Convertor(char *str) : _type(0), _char(0), _int(0), _float(0.0f), _double(0.0)
 {
 	if (MSGS > 0)
 		std::cout << "Convertor default c.tor called" << std::endl;
+	this->_type = convertFrom(str);
+	if ()
 }
 
 Convertor::Convertor(const Convertor &ref)
@@ -28,42 +30,52 @@ Convertor::~Convertor()
 		std::cout << "Convertor d.tor called" << std::endl;
 }
 
-const std::string &get_type(char *str)
+int Convertor::checkType(char *str)
 {
-
 }
 
-const char &strChar(const std::string &ref)
+void Convertor::convertTo(char *str)
 {
-
+	std::stringstream ss(static_cast<std::string>(str));
+	switch (checkType(str))
+	{
+	case (CNV_C):
+		this->_char = static_cast<char>(str[0]);
+		fillFromChar();
+		break;
+	case (CNV_I):
+		this->_int = static_cast<int>();
+		break;
+	case (CNV_F):
+		/* code */
+		break;
+	case (CNV_D):
+		/* code */
+		break;
+	case (CNV_INV):
+		/* code */
+		break;
+	default:
+		break;
+	}
 }
 
-const char &intChar(const int &ref)
-{}
+void Convertor::fillFromChar()
+{
+}
 
+void Convertor::fillFromInt()
+{
+}
 
-const int &strInt(const std::string &ref)
-{}
+void Convertor::fillFromFloat()
+{
+}
 
-const int &charInt(const char &ref)
-{}
+void Convertor::fillFromDouble()
+{
+}
 
-const int &doubleInt(const double &ref)
-{}
-
-
-const double &strDouble(const std::string &ref)
-{}
-
-const double &intDouble(const int &ref)
-{}
-
-const double &floatDouble(const float &ref)
-{}
-
-
-const float &strFloat(const std::string &ref)
-{}
-
-const float &doubleFloat(const double &ref)
-{}
+void Convertor::displayAll()
+{
+}

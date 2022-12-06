@@ -1,14 +1,20 @@
 #ifndef MSGS
-#define MSGS 1
+# define MSGS 1
 #endif
 #ifndef LIBPROTEC
-#define LIBPROTEC
-#include <iostream>
-#include <string>
-#include <exception>
+# define LIBPROTEC
+# include <iostream>
+# include <string>
+# include <sstream>
+# include <exception>
 #endif
 #ifndef CONVERTOR
-#define CONVERTOR
+# define CONVERTOR
+# define CNV_INV 0
+# define CNV_C 1
+# define CNV_I 2
+# define CNV_F 3
+# define CNV_D 4
 
 class Convertor
 {
@@ -23,7 +29,11 @@ private:
 	};
 
 private:
-	std::string _type;
+	int			_type;
+	char		_char;
+	int			_int;
+	float		_float;
+	double		_double;
 
 public:
 	Convertor(char *str);
@@ -31,21 +41,13 @@ public:
 	Convertor &operator=(const Convertor &rhs);
 	~Convertor();
 
-	const std::string &convertFromString(char *str);
-
-	const char &strChar(const std::string &ref);
-	const char &intChar(const int &ref);
-
-	const int &strInt(const std::string &ref);
-	const int &charInt(const char &ref);
-	const int &doubleInt(const double &ref);
-
-	const double &strDouble(const std::string &ref);
-	const double &intDouble(const int &ref);
-	const double &floatDouble(const float &ref);
-
-	const float &strFloat(const std::string &ref);
-	const float &doubleFloat(const double &ref);
+	int checkType(char *str);
+	void convertTo(char *str);
+	void fillFromChar();
+	void fillFromInt();
+	void fillFromFloat();
+	void fillFromDouble();
+	void displayAll();
 };
 
 #endif
