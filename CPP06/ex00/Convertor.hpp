@@ -42,11 +42,12 @@ public:
 	~Convertor();
 
 	int checkType(char *str);
-	void convertTo(char *str);
+	void storeValue(char *str);
 	void fillFromChar();
 	void fillFromInt();
 	void fillFromFloat();
 	void fillFromDouble();
+	void fillInvalid();
 	void displayAll();
 };
 
