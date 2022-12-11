@@ -18,18 +18,8 @@
 
 class Convertor
 {
-private:
-	class NonDisplayableException : public std::exception
-	{
-		const char *what() const throw();
-	};
-	class ImpossibleConversionException : public std::exception
-	{
-		const char *what() const throw();
-	};
 
 private:
-	int			_type;
 	char		_char;
 	int			_int;
 	float		_float;
@@ -41,7 +31,6 @@ public:
 	Convertor &operator=(const Convertor &rhs);
 	~Convertor();
 
-	int checkType(char *str);
 	void storeValue(char *str);
 	void fillFromChar();
 	void fillFromInt();

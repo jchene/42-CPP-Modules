@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:34:01 by jchene            #+#    #+#             */
-/*   Updated: 2022/12/02 17:22:14 by jchene           ###   ########.fr       */
+/*   Updated: 2022/12/11 17:32:15 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <string>
 # include <iostream>
 #endif
+#include "Convertor.hpp"
 
 int main(int argc, char** argv)
 {
@@ -23,6 +24,6 @@ int main(int argc, char** argv)
 		std::cout << "Wrong number of arguments" << std::endl;
 		return (-1);
 	}
-	
+	Convertor C(argv[1]);
 	return (0);
 }

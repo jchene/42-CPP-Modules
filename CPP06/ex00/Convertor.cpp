@@ -1,25 +1,26 @@
 #include "./Convertor.hpp"
 
-// EXCEPTIONS
-
 // COPLIEN
-Convertor::Convertor(char *str) : _type(checkType(str)), _char(0), _int(0), _float(0.0f), _double(0.0)
+Convertor::Convertor(char *str) : _char(0), _int(0), _float(0.0f), _double(0.0)
 {
 	if (MSGS > 0)
 		std::cout << "Convertor default c.tor called" << std::endl;
 	storeValue(str);
+	displayAll();
 }
 
 Convertor::Convertor(const Convertor &ref)
 {
 	if (MSGS > 0)
 		std::cout << "Convertor copy c.tor called" << std::endl;
+	(void)ref;
 }
 
 Convertor &Convertor::operator=(const Convertor &rhs)
 {
 	if (MSGS > 0)
 		std::cout << "Convertor copy assignment o.tor called" << std::endl;
+	(void)rhs;
 	return (*this);
 }
 
@@ -29,61 +30,21 @@ Convertor::~Convertor()
 		std::cout << "Convertor d.tor called" << std::endl;
 }
 
-int Convertor::checkType(char *str)
-{
-}
-
 void Convertor::storeValue(char *str)
 {
 	std::stringstream ss;
 	ss << str;
-	switch (checkType(str))
-	{
-	case (CNV_C):
-		this->_char = str[0];
-		fillFromChar();
-		break;
-	case (CNV_I):
-		ss >> this->_int;
-		fillFromInt();
-		break;
-	case (CNV_F):
-		ss >> this->_int;
-		fillFromFloat();
-		break;
-	case (CNV_D):
-		ss >> this->_double;
-		fillFromDouble();
-		break;
-	case (CNV_INV):
-		fillInvalid();
-		break;
-	default:
-		break;
-	}
-}
-
-void Convertor::fillFromChar()
-{
-}
-
-void Convertor::fillFromInt()
-{
-}
-
-void Convertor::fillFromFloat()
-{
-}
-
-void Convertor::fillFromDouble()
-{
-}
-
-void Convertor::fillInvalid()
-{
-
+	ss >> this->_char;
+	ss >> this->_char;
+	/*this->_float = static_cast<float>(this->_double);
+	this->_int = static_cast<int>(this->_double);
+	this->_char = static_cast<char>(this->_double);*/
 }
 
 void Convertor::displayAll()
 {
+	std::cout << this->_double << std::endl;
+	std::cout << this->_float << std::endl;
+	std::cout << this->_int << std::endl;
+	std::cout << "|" << this->_char << "|" << std::endl;
 }

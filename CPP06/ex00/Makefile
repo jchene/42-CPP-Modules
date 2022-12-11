@@ -16,10 +16,11 @@ FLAGS		:= -Wall -Wextra -Werror -std=c++98 -D MSGS=1
 ################################################################################
 
 SRCS		:=  main.cpp \
+				Convertor.cpp \
 
 OBJS		:=  ${SRCS:.cpp=.o}
 
-HEADERS 	:=	
+HEADERS 	:=	Convertor.hpp \
 
 .cpp.o:
 			${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}
