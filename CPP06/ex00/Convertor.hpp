@@ -10,11 +10,26 @@
 #endif
 #ifndef CONVERTOR
 # define CONVERTOR
-# define CNV_INV 0
-# define CNV_C 1
-# define CNV_I 2
-# define CNV_F 3
-# define CNV_D 4
+
+//CONVERTOR STRINGS
+# define SIGNS "+-"
+# define NUMBERS "0123456789"
+# define ALL_SYM "+-.inf0123456789"
+# define NOT_INT_SYM ".inf"
+# define POINT "."
+# define INF "inf"
+# define SUFFIXES "f"
+
+//STRING TYPES
+# define INVALID 0
+# define CHAR 1
+# define INT 2
+# define FLOAT 3
+# define DOUBLE 4
+
+//RETURN VALUES
+# define KO 0
+# define OK 1
 
 class Convertor
 {
@@ -25,18 +40,22 @@ private:
 	float		_float;
 	double		_double;
 
-public:
-	Convertor(char *str);
-	Convertor(const Convertor &ref);
-	Convertor &operator=(const Convertor &rhs);
-	~Convertor();
-
+	int checkType(const std::string &ref);
+	int countOccur(const std::string &str, const std::string &charset);
+	bool isCharset(const char &c, const std::string &charset);
 	void storeValue(char *str);
 	void fillFromChar();
 	void fillFromInt();
 	void fillFromFloat();
 	void fillFromDouble();
 	void fillInvalid();
+
+public:
+	Convertor(char *str);
+	Convertor(const Convertor &ref);
+	Convertor &operator=(const Convertor &rhs);
+	~Convertor();
+
 	void displayAll();
 };
 
