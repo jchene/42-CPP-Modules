@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:34:01 by jchene            #+#    #+#             */
-/*   Updated: 2022/12/13 19:43:13 by jchene           ###   ########.fr       */
+/*   Updated: 2022/12/16 18:41:17 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBPROTEC
 # include <string>
 # include <iostream>
+# include <limits>
 #endif
 #include "Convertor.hpp"
 
