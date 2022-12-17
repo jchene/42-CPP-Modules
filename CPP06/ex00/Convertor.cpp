@@ -10,6 +10,15 @@ Convertor::Convertor(char *str) : _offset(0), _type(UNSET),
 	if (MSGS > 0)
 		std::cout << "Convertor default c.tor called" << std::endl;
 	storeValue(str);
+	if (this->_cStatus == S_UNSET)
+		this->_cStatus = S_IMPOSSIBLE;
+	if (this->_iStatus == S_UNSET)
+		this->_iStatus = S_IMPOSSIBLE;
+	if (this->_fStatus == S_UNSET)
+		this->_fStatus = S_IMPOSSIBLE;
+	if (this->_dStatus == S_UNSET)
+		this->_dStatus = S_IMPOSSIBLE;
+	displayAll();
 }
 
 Convertor::Convertor(const Convertor &ref)
@@ -81,33 +90,176 @@ bool Convertor::checkNumber(char *str)
 		if (tmp.find_first_of(SUFFIXE) != tmp.length() - 1)
 			return (setRetType(false, INVALID));
 	}
+
 	if (tmp.find_first_of(SUFFIXE) != std::string::npos)
+	{
 		return (setRetType(true, FLOAT));
+	}
 	if (tmp.find_first_of(POINT) != std::string::npos)
 		return (setRetType(true, DOUBLE));
 	return (setRetType(true, INT));
 }
 
-bool Convertor::checkInf(char *str)
+bool Convertor::checkSpe(char *str)
 {
 	std::string tmp = &str[0 + this->_offset];
-	if (tmp.find_first_not_of(INF) != std::string::npos)
+	if (tmp.find_first_not_of(SPE_SYM) != std::string::npos)
 		return (setRetType(false, INVALID));
 	if (tmp.length() == 3 && tmp.substr(0, 3).compare("nan") == 0 && this->_offset == 0)
+	{
+		this->_cStatus = S_IMPOSSIBLE;
+		this->_iStatus = S_IMPOSSIBLE;
+		this->_fStatus = S_NAN;
+		this->_dStatus = S_NAN;
 		return (setRetType(true, DOUBLE));
+	}
 	if (tmp.length() == 4 && tmp.substr(0, 4).compare("nanf") == 0 && this->_offset == 0)
+	{
+		this->_cStatus = S_IMPOSSIBLE;
+		this->_iStatus = S_IMPOSSIBLE;
+		this->_fStatus = S_NAN;
+		this->_dStatus = S_NAN;
 		return (setRetType(true, FLOAT));
+	}
 	if (tmp.length() == 3 && tmp.substr(0, 3).compare("inf") == 0 && this->_offset == 1)
+	{
+		this->_cStatus = S_IMPOSSIBLE;
+		this->_iStatus = S_IMPOSSIBLE;
+		if (str[0] == '-')
+			this->_fStatus = S_INFM;
+		else
+			this->_fStatus = S_INF;
+		if (str[0] == '-')
+			this->_dStatus = S_INFM;
+		else
+			this->_dStatus = S_INF;
 		return (setRetType(true, DOUBLE));
+	}
 	if (tmp.length() == 4 && tmp.substr(0, 4).compare("inff") == 0 && this->_offset == 1)
+	{
+		this->_cStatus = S_IMPOSSIBLE;
+		this->_iStatus = S_IMPOSSIBLE;
+		if (str[0] == '-')
+			this->_fStatus = S_INFM;
+		else
+			this->_fStatus = S_INF;
+		if (str[0] == '-')
+			this->_dStatus = S_INFM;
+		else
+			this->_dStatus = S_INF;
 		return (setRetType(true, FLOAT));
+	}
 	return (setRetType(false, INVALID));
 }
 
 // CONVERSION
-void fillOthers(char *str)
+void Convertor::fillChar(char *str)
 {
+	(void)str;
+	this->_cStatus = S_OK;
+	this->_int = static_cast<int>(this->_char);
+	this->_iStatus = S_OK;
+	this->_float = static_cast<float>(this->_char);
+	this->_fStatus = S_OK;
+	this->_double = static_cast<double>(this->_char);
+	this->_dStatus = S_OK;
+}
 
+void Convertor::fillInt(char *str)
+{
+	double dtmp;
+	std::stringstream iss(&str[0 + this->_offset]);
+	iss >> dtmp;
+	std::cout << "teste: " << dtmp << std::endl;
+	if (this->_int > CHAR_MAX || this->_int < CHAR_MIN)
+		this->_cStatus = S_IMPOSSIBLE;
+	else if (this->_int <= 31)
+		this->_cStatus = S_NON_DISP;
+	else
+	{
+		this->_char = static_cast<char>(this->_int);
+		this->_cStatus = S_OK;
+	}
+	if (dtmp > static_cast<double>(INT_MAX))
+		this->_iStatus = S_IMPOSSIBLE;
+	else
+		this->_iStatus = S_OK;
+	if (dtmp > static_cast<double>(FLOAT_MAX))
+		this->_fStatus = S_IMPOSSIBLE;
+	else
+	{
+		this->_float = static_cast<float>(dtmp);
+		this->_fStatus = S_OK;
+	}
+	this->_double = static_cast<double>(dtmp);
+	this->_dStatus = S_OK;	
+}
+
+void Convertor::fillFloat(char *str)
+{
+	double dtmp;
+	std::stringstream iss(&str[0 + this->_offset]);
+	iss >> dtmp;
+	if (this->_fStatus == S_NAN || this->_fStatus == S_INF || this->_fStatus == S_INFM)
+		return;
+	if (this->_float > static_cast<float>(CHAR_MAX) || this->_float < static_cast<float>(CHAR_MIN))
+		this->_cStatus = S_IMPOSSIBLE;
+	else if (this->_float <= 31)
+		this->_cStatus = S_NON_DISP;
+	else
+	{
+		this->_char = static_cast<char>(this->_float);
+		this->_cStatus = S_OK;
+	}
+	if (this->_float > static_cast<float>(INT_MAX) || this->_float < static_cast<float>(INT_MIN))
+		this->_iStatus = S_IMPOSSIBLE;
+	else
+	{
+		this->_int = static_cast<int>(this->_float);
+		this->_iStatus = S_OK;
+	}
+	if (dtmp > static_cast<double>(FLOAT_MAX))
+	{
+		this->_fStatus = S_IMPOSSIBLE;
+		this->_double = static_cast<double>(dtmp);
+		this->_dStatus = S_OK;
+		return;
+	}
+	this->_double = static_cast<double>(this->_float);
+	this->_dStatus = S_OK;
+	this->_fStatus = S_OK;
+}
+
+void Convertor::fillDouble()
+{
+	if (this->_dStatus == S_NAN || this->_dStatus == S_INF || this->_dStatus == S_INFM)
+		return;
+	this->_dStatus = S_OK;
+	if (this->_double > static_cast<double>(CHAR_MAX) || this->_double < static_cast<double>(CHAR_MIN))
+		this->_cStatus = S_IMPOSSIBLE;
+	else if (this->_double <= 31)
+		this->_cStatus = S_NON_DISP;
+	else
+	{
+		this->_char = static_cast<char>(this->_double);
+		this->_cStatus = S_OK;
+	}
+	if (this->_double > static_cast<double>(INT_MAX) || this->_double < static_cast<double>(INT_MIN))
+		this->_iStatus = S_IMPOSSIBLE;
+	else
+	{
+		this->_int = static_cast<int>(this->_double);
+		this->_iStatus = S_OK;
+	}
+	if (this->_double > static_cast<double>(FLOAT_MAX))
+		this->_fStatus = S_IMPOSSIBLE;
+	else if (this->_double < static_cast<double>(-FLOAT_MAX))
+		this->_fStatus = S_IMPOSSIBLE;
+	else
+	{
+		this->_float = static_cast<float>(this->_double);
+		this->_fStatus = S_OK;
+	}
 }
 
 void Convertor::convertValue(char *str)
@@ -118,49 +270,41 @@ void Convertor::convertValue(char *str)
 	{
 	case (CHAR):
 		this->_char = str[0];
+		fillChar(str);
 		break;
 	case (INT):
 		stream >> this->_int;
 		if (stream.fail())
 			this->_iStatus = S_IMPOSSIBLE;
+		fillInt(str);
 		break;
 	case (FLOAT):
 		stream >> this->_float;
-		if (stream.fail())
+		if (stream.fail() && this->_fStatus != S_NAN && this->_fStatus != S_INF && this->_fStatus != S_INFM)
 			this->_fStatus = S_IMPOSSIBLE;
+		fillFloat(str);
 		break;
 	case (DOUBLE):
 		stream >> this->_double;
-			if (stream.fail())
+		if (stream.fail() && this->_dStatus != S_NAN && this->_dStatus != S_INF && this->_dStatus != S_INFM)
 			this->_dStatus = S_IMPOSSIBLE;
+		fillDouble();
 		break;
 	default:
 		break;
 	}
-	fillOthers(str);
 }
 
-bool Convertor::storeValue(char *str)
+void Convertor::storeValue(char *str)
 {
 	std::string tmp = str;
 	if (tmp.length() == 0)
-	{
 		setRetType(false, INVALID);
-		return (displayAll());
-	}
 	if (tmp.length() == 1 && tmp.find_first_of(NUMBERS) == std::string::npos)
-	{
 		setRetType(true, CHAR);
-		convertValue(str);
-		return (displayAll());
-	}
-	if (checkPrefix(str) == false)
-		return (displayAll());
-	if (checkNumber(str) == false)
-		if (checkInf(str) == false)
-			return (displayAll());
+	else if (tmp.length() == 0 || !checkPrefix(str) || (!checkNumber(str) && !checkSpe(str)))
+		return;
 	convertValue(str);
-	return (displayAll());
 }
 
 // DISPLAY
@@ -195,6 +339,15 @@ const char *Convertor::getDefineStr(int value)
 	case (S_NON_DISP):
 		return ("NON DISPLAYABLE");
 		break;
+	case (S_NAN):
+		return ("nan");
+		break;
+	case (S_INF):
+		return ("inf");
+		break;
+	case (S_INFM):
+		return ("-inf");
+		break;
 	default:
 		return ("DEFAULT");
 		break;
@@ -217,9 +370,12 @@ bool Convertor::displayAll()
 		std::cout << getDefineStr(this->_iStatus) << std::endl;
 	std::cout << "float: ";
 	if (this->_fStatus == S_OK)
-		std::cout << this->_float << std::endl;
+		std::cout << this->_float;
 	else
-		std::cout << getDefineStr(this->_fStatus) << std::endl;
+		std::cout << getDefineStr(this->_fStatus);
+	if (this->_fStatus == S_OK || this->_fStatus == S_NAN || this->_fStatus == S_INF || this->_fStatus == S_INFM)
+		std::cout << "f";
+	std::cout << std::endl;
 	std::cout << "double: ";
 	if (this->_dStatus == S_OK)
 		std::cout << this->_double << std::endl;

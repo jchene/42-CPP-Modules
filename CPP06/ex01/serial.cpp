@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   serial.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 16:34:01 by jchene            #+#    #+#             */
-/*   Updated: 2022/12/17 11:38:37 by jchene           ###   ########.fr       */
+/*   Created: 2022/12/17 16:50:02 by jchene            #+#    #+#             */
+/*   Updated: 2022/12/17 17:20:21 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Convertor.hpp"
+#include "serial.hpp"
 
-int main(int argc, char** argv)
+uintptr_t serialize(Data *ptr)
 {
-	if (argc != 2)
-	{
-		std::cout << "Wrong number of arguments" << std::endl;
-		return (-1);
-	}
-	Convertor c(argv[1]);
-	return (0);
+	return (reinterpret_cast<uintptr_t>(ptr));
+}
+
+Data *unserialize(uintptr_t ptrValue)
+{
+	return (reinterpret_cast<Data *>(ptrValue));
 }

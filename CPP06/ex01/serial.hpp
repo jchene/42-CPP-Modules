@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   serial.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 16:34:01 by jchene            #+#    #+#             */
-/*   Updated: 2022/12/17 11:38:37 by jchene           ###   ########.fr       */
+/*   Created: 2022/12/17 16:42:52 by jchene            #+#    #+#             */
+/*   Updated: 2022/12/17 17:22:20 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Convertor.hpp"
+#ifndef LIBPROTEC
+# define LIBPROTEC
+# include <iostream>
+# include <string>
+# include <stdint.h>
+#endif
+#ifndef SERIAL_HPP
+# define SERIAL_HPP
 
-int main(int argc, char** argv)
+typedef struct s_Data
 {
-	if (argc != 2)
-	{
-		std::cout << "Wrong number of arguments" << std::endl;
-		return (-1);
-	}
-	Convertor c(argv[1]);
-	return (0);
-}
+	int nb;
+}				Data;
+
+uintptr_t serialize(Data *ptr);
+Data *unserialize(uintptr_t ptrValue);
+
+#endif

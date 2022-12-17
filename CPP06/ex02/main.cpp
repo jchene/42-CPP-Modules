@@ -5,20 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 16:34:01 by jchene            #+#    #+#             */
-/*   Updated: 2022/12/17 11:38:37 by jchene           ###   ########.fr       */
+/*   Created: 2022/12/17 18:14:46 by jchene            #+#    #+#             */
+/*   Updated: 2022/12/17 19:09:27 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Convertor.hpp"
+#include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
-int main(int argc, char** argv)
+int main(void)
 {
-	if (argc != 2)
+	Base *ptr;
+	for (int i = 0; i < 10; i++)
 	{
-		std::cout << "Wrong number of arguments" << std::endl;
-		return (-1);
+		ptr = generate();
+		identify(ptr);
+		identify(*ptr);
+		std::cout << std::endl;
+		delete ptr;
 	}
-	Convertor c(argv[1]);
 	return (0);
 }
