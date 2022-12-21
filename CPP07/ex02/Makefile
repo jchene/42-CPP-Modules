@@ -19,7 +19,7 @@ SRCS		:=  main.cpp \
 
 OBJS		:=  ${SRCS:.cpp=.o}
 
-HEADERS 	:=	
+HEADERS 	:=	Array.hpp \
 
 .cpp.o:
 			${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}
