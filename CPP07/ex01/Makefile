@@ -7,7 +7,7 @@
 #									 CONFIG								   #
 ################################################################################
 
-NAME		:= Whatever
+NAME		:= Iter
 CC			:= c++
 FLAGS		:= -Wall -Wextra -Werror -std=c++98 -D MSGS=0
  
@@ -19,7 +19,7 @@ SRCS		:=  main.cpp \
 
 OBJS		:=  ${SRCS:.cpp=.o}
 
-HEADERS 	:=	whatever.hpp \
+HEADERS 	:=	iter.hpp \
 
 .cpp.o:
 			${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}
