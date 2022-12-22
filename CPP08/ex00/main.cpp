@@ -1,4 +1,5 @@
 #include "easyfind.hpp"
+#include <iostream>
 #include <vector>
 #include <list>
 #define SIZE 15
