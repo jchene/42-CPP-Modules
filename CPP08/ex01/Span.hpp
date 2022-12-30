@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 15:23:51 by jchene            #+#    #+#             */
-/*   Updated: 2022/12/29 18:42:45 by jchene           ###   ########.fr       */
+/*   Updated: 2022/12/30 00:48:45 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <vector>
 # include <exception>
 # include <algorithm>
+# include <iterator>
 
 typedef std::vector<int> intVec;
 
@@ -39,11 +40,6 @@ private:
 	public:
 		const char *what() const throw();
 	};
-	class notEnoughSpaceException : public std::exception
-	{
-	public:
-		const char *what() const throw();
-	};
 
 public:
 	Span(unsigned int n);
@@ -56,11 +52,13 @@ public:
 	unsigned int shortestSpan() const;
 	unsigned int longestSpan() const;
 
-	template< class InputIt >
-	void fillArray( InputIt first, InputIt last );
-
 	unsigned int maxSize() const;
 	const intVec &getArray() const;
+
+	void fillArray(intVec::const_iterator first, intVec::const_iterator last);
+
+	void displaySpan();
 };
+
 
 #endif

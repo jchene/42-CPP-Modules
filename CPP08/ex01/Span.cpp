@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 15:23:53 by jchene            #+#    #+#             */
-/*   Updated: 2022/12/29 18:43:24 by jchene           ###   ########.fr       */
+/*   Updated: 2022/12/30 00:48:42 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ const char *Span::arrayFullException::what() const throw()
 const char *Span::noSpanException::what() const throw()
 {
 	return ("No span could be found");
-}
-
-const char *Span::notEnoughSpaceException::what() const throw()
-{
-	return ("Not enough space in span");
 }
 
 Span::Span(unsigned int N) : _maxSize(N)
@@ -89,11 +84,12 @@ unsigned int Span::longestSpan() const
 	return (static_cast<unsigned int>(max - min));
 }
 
-template< class InputIt >
-void fillArray( InputIt first, InputIt last )
+void Span::fillArray(intVec::const_iterator first, intVec::const_iterator last)
 {
-	(void)first;
-	(void)last;
+	for (intVec::const_iterator it = first; it != last; it++)
+	{
+		addNumber(*it);
+	}
 }
 
 unsigned int Span::maxSize() const
@@ -104,4 +100,11 @@ unsigned int Span::maxSize() const
 const intVec &Span::getArray() const
 {
 	return (this->_array);
+}
+
+void Span::displaySpan()
+{
+	std::cout << "Span: ";
+	std::copy(this->_array.begin(), this->_array.end(), std::ostream_iterator<int>(std::cout, " "));
+	std::cout << std::endl;
 }
