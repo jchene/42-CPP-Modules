@@ -6,7 +6,7 @@
 /*   By: jchene <jchene@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:55:22 by jchene            #+#    #+#             */
-/*   Updated: 2022/12/30 01:19:09 by jchene           ###   ########.fr       */
+/*   Updated: 2022/12/30 01:34:27 by jchene           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ public:
 	iterator end() 
 	{
 		return (this->c.end());
+	};
+	iterator rbegin()
+	{
+		return (this->c.rbegin());
+	};
+	iterator rend() 
+	{
+		return (this->c.rend());
 	};
 };
 
