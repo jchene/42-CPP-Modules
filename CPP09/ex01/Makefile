@@ -7,7 +7,7 @@
 #									 CONFIG								   #
 ################################################################################
 
-NAME		:= btc
+NAME		:= RPN
 CC			:= c++
 FLAGS		:= -Wall -Wextra -Werror -std=c++98 -D MSGS=1
  
@@ -16,11 +16,11 @@ FLAGS		:= -Wall -Wextra -Werror -std=c++98 -D MSGS=1
 ################################################################################
 
 SRCS		:=  main.cpp \
-				BitcoinExchange.cpp \
+				RPN.cpp \
 
 OBJS		:=  ${SRCS:.cpp=.o}
 
-HEADERS 	:=	BitcoinExchange.hpp \
+HEADERS 	:=	RPN.hpp \
 
 .cpp.o:
 			${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}
