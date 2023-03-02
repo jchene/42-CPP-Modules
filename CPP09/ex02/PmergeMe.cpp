@@ -31,10 +31,8 @@ void displayPreview(std::vector<int> &vec, char state)
 		std::cout << "Before: ";
 	else
 		std::cout << "After: ";
-	for (unsigned long i = 0; i < vec.size() && i < 5; i++)
+	for (unsigned long i = 0; i < vec.size(); i++)
 		std::cout << vec.at(i) << " ";
-	if (vec.size() > 5)
-		std::cout << "[...]";
 	std::cout << std::endl;
 }
 
@@ -44,59 +42,36 @@ void displayTimes(std::vector<int> &vec, std::list<int> &lst, double vecTime, do
 	std::cout << "Time to process a range of " << lst.size() << " elements with std::list : " << lstTime << " us" << std::endl;
 }
 
-// Merge-sort function for a vector container
-void vecMergeSort(std::vector<int> &v, int l, int r)
+void vecMergeSort(std::vector<int> &vec, int left, int right)
 {
-	if (l >= r)
-	{
+	if (left >= right)
 		return;
-	}
-
-	int m = (l + r) / 2;
-	vecMergeSort(v, l, m);
-	vecMergeSort(v, m + 1, r);
-
+	int mid = (left + right) / 2;
+	vecMergeSort(vec, left, mid);
+	vecMergeSort(vec, mid + 1, right);
 	std::vector<int> tmp;
-	tmp.reserve(r - l + 1);
-
-	int i = l;
-	int j = m + 1;
-
-	while (i <= m && j <= r)
+	tmp.reserve(right - left + 1);
+	int i = left;
+	int j = mid + 1;
+	while (i <= mid && j <= right)
 	{
-		if (v[i] < v[j])
-		{
-			tmp.push_back(v[i]);
-			i++;
-		}
+		if (vec[i] < vec[j])
+			tmp.push_back(vec[i++]);
 		else
-		{
-			tmp.push_back(v[j]);
-			j++;
-		}
+			tmp.push_back(vec[j++]);
 	}
-
-	while (i <= m)
-	{
-		tmp.push_back(v[i]);
-		i++;
-	}
-
-	while (j <= r)
-	{
-		tmp.push_back(v[j]);
-		j++;
-	}
-
+	while (i <= mid)
+		tmp.push_back(vec[i++]);
+	while (j <= right)
+		tmp.push_back(vec[j++]);
 	for (unsigned long k = 0; k < tmp.size(); k++)
-	{
-		v[l + k] = tmp[k];
-	}
+		vec[left + k] = tmp[k];
 }
 
-// Insertion-sort function for a vector container
 void vecInsertionSort(std::vector<int>::iterator begin, std::vector<int>::iterator end)
 {
+	if (begin == end)
+		return;
 	for (std::vector<int>::iterator it = begin + 1; it != end; ++it)
 	{
 		std::vector<int>::iterator jt = it;
@@ -108,99 +83,77 @@ void vecInsertionSort(std::vector<int>::iterator begin, std::vector<int>::iterat
 	}
 }
 
-// Merge-insertion-sort function for a vector container
-void sortVector(std::vector<int> &vec, double &vecTime)
+void sortVector(std::vector<int> &vec, double &vecTime, int threshold)
 {
 	struct timeval start_time;
 	struct timeval stop_time;
 	gettimeofday(&start_time, NULL);
-	const int kThreshold = 16; // Insertion sort threshold
-
 	vecMergeSort(vec, 0, vec.size() - 1);
-
-	for (unsigned long i = kThreshold; i < vec.size(); i += kThreshold)
+	for (unsigned long i = threshold; i < vec.size(); i += threshold)
 	{
-		int start = i - kThreshold;
+		int start = i - threshold;
 		int end = i - 1;
 		vecInsertionSort(std::vector<int>::iterator(&vec[start]), std::vector<int>::iterator(&vec[end + 1]));
 	}
-
-	vecInsertionSort(std::vector<int>::iterator(&vec[vec.size() - vec.size() % kThreshold]), vec.end());
+	vecInsertionSort(std::vector<int>::iterator(&vec[vec.size() - vec.size() % threshold]), vec.end());
 	gettimeofday(&stop_time, NULL);
 	vecTime = (stop_time.tv_sec - start_time.tv_sec) * 1000000.0 + (stop_time.tv_usec - start_time.tv_usec);
 }
 
-// Merge-sort function for a list container
-void merge(std::list<int> &l, std::list<int>::iterator left, std::list<int>::iterator mid, std::list<int>::iterator right) {
+void mergeLists(std::list<int>::iterator left, std::list<int>::iterator mid, std::list<int>::iterator right) {
     std::list<int> merged;
     std::list<int>::iterator i = left;
     std::list<int>::iterator j = mid;
-	(void)l;
     while (i != mid && j != right) {
-        if (*i < *j) {
-            merged.push_back(*i);
-            ++i;
-        } else {
-            merged.push_back(*j);
-            ++j;
-        }
+        if (*i < *j)
+            merged.push_back(*i++);
+        else
+            merged.push_back(*j++);
     }
-    while (i != mid) {
-        merged.push_back(*i);
-        ++i;
-    }
-    while (j != right) {
-        merged.push_back(*j);
-        ++j;
-    }
+    while (i != mid)
+        merged.push_back(*i++);
+    while (j != right)
+        merged.push_back(*j++);
     std::copy(merged.begin(), merged.end(), left);
 }
 
-void listMergeSort(std::list<int> &l, std::list<int>::iterator lbegin, std::list<int>::iterator lend) {
+void listMergeSort(std::list<int> &lst, std::list<int>::iterator lbegin, std::list<int>::iterator lend) {
     if (std::distance(lbegin, lend) > 1) {
         std::list<int>::iterator mid = lbegin;
         std::advance(mid, std::distance(lbegin, lend) / 2);
-        listMergeSort(l, lbegin, mid);
-        listMergeSort(l, mid, lend);
-        merge(l, lbegin, mid, lend);
+        listMergeSort(lst, lbegin, mid);
+        listMergeSort(lst, mid, lend);
+        mergeLists(lbegin, mid, lend);
     }
 }
 
-// Insertion-sort function for a list container
 void listInsertionSort(std::list<int> &lst)
 {
-	for (std::list<int>::iterator i = lst.begin(); i != lst.end(); ++i) {
-        int value = *i;
-        std::list<int>::iterator j = i;
-        while (j != lst.begin() && *(--j) > value) {
+	for (std::list<int>::iterator it = lst.begin(); it != lst.end(); ++it) {
+        int value = *it;
+        std::list<int>::iterator j = it;
+        while (j != lst.begin() && *(--j) > value)
             *(j++) = *j;
-        }
         *j = value;
     }
 }
 
-// Merge-insertion-sort function for a list container
-void sortList(std::list<int> &lst, double &lstTime)
+void sortList(std::list<int> &lst, double &lstTime, int threshold)
 {
 	struct timeval start_time;
 	struct timeval stop_time;
 	gettimeofday(&start_time, NULL);
-
-	const int kThreshold = 16;
-
     listMergeSort(lst, lst.begin(), lst.end());
-
     std::list<int>::iterator it = lst.begin();
-    while (std::distance(it, lst.end()) >= kThreshold) {
+    while (std::distance(it, lst.end()) >= threshold) {
         std::list<int>::iterator it1 = it;
-        std::advance(it1, kThreshold);
+        std::advance(it1, threshold);
 		std::list<int> tmp(it, it1);
         listInsertionSort(tmp);
         it = it1;
     }
 	std::list<int> tmp2(it, lst.end());
     listInsertionSort(tmp2);
-
 	gettimeofday(&stop_time, NULL);
 	lstTime = (stop_time.tv_sec - start_time.tv_sec) * 1000000.0 + (stop_time.tv_usec - start_time.tv_usec);
 }
