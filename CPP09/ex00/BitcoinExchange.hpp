@@ -26,6 +26,36 @@ typedef struct dataStruct
 	std::ifstream input;
 }	dataStruct_t;
 
+typedef unsigned short uShort;
+
+class Date : public std::string
+{
+private:
+	short _year;
+	uShort _month;
+	uShort _day;
+
+	Date();
+
+	uShort getMonthLimit(uShort month, short year);
+	
+public:
+	Date(short Y, uShort m, uShort d);
+	Date(std::string dateStr);
+	Date(const Date &ref);
+	Date &operator=(const Date &rhs);
+	Date &operator=(std::string str);
+	~Date();
+	
+	short getYear() const;
+	uShort getMonth() const;
+	uShort getDay() const;
+
+	Date &operator+=(unsigned short val);
+	Date &operator-=(unsigned short val);
+	std::string str();
+};
+
 int errorHandler(int code, dataStruct_t &data);
 int fillContainer(std::map<std::string, std::string> &container, dataStruct_t &data);
 void compareData(std::map<std::string, std::string> &container, dataStruct_t &data);
